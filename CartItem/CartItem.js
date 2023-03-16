@@ -16,27 +16,30 @@ module.exports = class CartItem {
 
     //region public methods
     constructor(articleId, name, quantity, price) {
-        throw new Error();
+        this.#articleId = articleId;
+        this.#name = name;
+        this.#quantity = quantity;
+        this.#price = price;
     }
 
     get articleId() {
-        throw new Error();
+        return this.#articleId;
     }
 
     get name() {
-        throw new Error();
+      return this.#name;
     }
 
     get quantity() {
-        throw new Error();
+       return this.#quantity;
     }
 
     set quantity(value) {
-        throw new Error();
+       throw new Error();
     }
 
     get price() {
-        throw new Error();
+      return this.#price;
     }
 
     set price(value) {
@@ -44,11 +47,11 @@ module.exports = class CartItem {
     }
 
     get currency(){
-        throw new Error();
+        return "CHF";
     }
 
     get total() {
-        throw new Error();
+        return this.#price*this.#quantity;
     }
     //endregion public methods
 
