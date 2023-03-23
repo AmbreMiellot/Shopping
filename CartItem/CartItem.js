@@ -35,7 +35,7 @@ module.exports = class CartItem {
         {
             throw new InvalidPriceException();
         }
-        if (name.length > 20)
+        if (name.length > 20 || name.length < 3)
         {
             throw new InvalidNameException();
         }
