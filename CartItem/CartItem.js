@@ -27,14 +27,6 @@ module.exports = class CartItem {
         {
             throw new InvalidArticleIdException();
         }
-        if (quantity < 1)
-        {
-            throw new InvalidQuantityException();
-        }
-        if (price < 10)
-        {
-            throw new InvalidPriceException();
-        }
         if (name.length > 20 || name.length < 3)
         {
             throw new InvalidNameException();
@@ -42,8 +34,8 @@ module.exports = class CartItem {
 
         this.#articleId = articleId;
         this.#name = name;
-        this.#quantity = quantity;
-        this.#price = price;
+        this.quantity = quantity;
+        this.price = price;
         this.#currency = currency;
     }
 
