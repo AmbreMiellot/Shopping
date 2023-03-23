@@ -18,19 +18,24 @@ module.exports = class CartItem {
     //region public methods
     constructor(articleId, name, quantity, price, currency = "CHF") {
 
-        if (currency.length !== 3)
+        if (currency.length != 3)
         {
             throw new InvalidCurrencyException();
         }
-        if (articleId < 1)
-        {
-            throw new InvalidArticleIdException;
-        }
+
         this.#articleId = articleId;
         this.#name = name;
         this.#quantity = quantity;
         this.#price = price;
+<<<<<<< HEAD
+
+        if (articleId < 1)
+        {
+            throw new InvalidArticleIdException;
+        }
+=======
         this.#currency = currency;
+>>>>>>> feature/ExCurrency
     }
 
     get articleId() {
