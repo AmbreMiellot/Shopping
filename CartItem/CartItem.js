@@ -4,6 +4,7 @@ const InvalidArticleIdException = require("./InvalidArticleIdException.js");
 const InvalidQuantityException = require("./InvalidQuantityException.js");
 const InvalidPriceException = require("./InvalidPriceException.js");
 const InvalidCurrencyException = require("./InvalidCurrencyException");
+const InvalidNameException = require("./InvalidNameException");
 
 module.exports = class CartItem {
 
@@ -33,6 +34,10 @@ module.exports = class CartItem {
         if (price < 10)
         {
             throw new InvalidPriceException();
+        }
+        if (name.length > 20)
+        {
+            throw new InvalidNameException();
         }
 
         this.#articleId = articleId;
