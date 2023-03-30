@@ -4,6 +4,7 @@ const InvalidArticleIdException = require("./InvalidArticleIdException.js");
 const InvalidQuantityException = require("./InvalidQuantityException.js");
 const InvalidPriceException = require("./InvalidPriceException.js");
 const InvalidCurrencyException = require("./InvalidCurrencyException");
+const InvalidNameException = require("./InvalidNameException");
 
 module.exports = class CartItem {
 
@@ -16,26 +17,28 @@ module.exports = class CartItem {
     //endregion private attributes
 
     //region public methods
+
     constructor(articleId, name, quantity, price, currency = "CHF") {
 
-        if (currency.length != 3)
+        if (currency.length !== 3)
         {
             throw new InvalidCurrencyException();
+        }
+        if (articleId < 1)
+        {
+            throw new InvalidArticleIdException();
+        }
+        if (name.length > 20 || name.length < 3)
+        {
+            throw new InvalidNameException();
         }
 
         this.#articleId = articleId;
         this.#name = name;
-        this.#quantity = quantity;
-        this.#price = price;
-<<<<<<< HEAD
-
-        if (articleId < 1)
-        {
-            throw new InvalidArticleIdException;
-        }
-=======
+        this.quantity = quantity;
+        this.price = price;
         this.#currency = currency;
->>>>>>> feature/ExCurrency
+
     }
 
     get articleId() {
@@ -43,6 +46,7 @@ module.exports = class CartItem {
     }
 
     get name() {
+
       return this.#name;
     }
 
@@ -51,6 +55,11 @@ module.exports = class CartItem {
     }
 
     set quantity(value) {
+
+       if (value < 1)
+       {
+          throw new InvalidQuantityException();
+       }
        this.#quantity = value;
     }
 
@@ -59,6 +68,11 @@ module.exports = class CartItem {
     }
 
     set price(value) {
+        if (value < 10)
+        {
+            throw new InvalidPriceException();
+        }
+
         this.#price = value;
     }
 
@@ -68,6 +82,7 @@ module.exports = class CartItem {
 
     get total() {
         return this.#price*this.#quantity;
+
     }
     //endregion public methods
 
